@@ -7,19 +7,28 @@
     android:layout_height="match_parent"
     android:padding="5dp"
     android:id="@+id/relativelayoutview"
-    tools:context="com.masst.memo.ViewActivity">
+    tools:context="com.masst.memo.Activities.ViewActivity">
 
+    <TextView
+        android:id="@+id/tvtitle"
+        android:layout_width="match_parent"
+        android:padding="7dp"
+        android:layout_height="50dp"
+        android:gravity="top|start"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
     <TextView
         android:id="@+id/tvtext"
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:padding="5dp"
-        android:layout_height="300dp"
+        android:layout_marginTop="35dp"
+        android:padding="7dp"
+        android:layout_height="wrap_content"
         android:gravity="top|start" />
 
     <TextView
         android:id="@+id/tvdate"
         android:layout_below="@id/tvtext"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

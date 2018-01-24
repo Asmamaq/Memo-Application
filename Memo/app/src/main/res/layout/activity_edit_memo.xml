@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.masst.memo.EditMemoActivity">
+    tools:context="com.masst.memo.Activities.EditMemoActivity">
 
     <LinearLayout
         android:id="@+id/lineareditmemo"
@@ -47,11 +47,24 @@
         android:id="@+id/scrollView"
         android:layout_alignParentTop="true"
         android:fillViewport="true">
-
-        <EditText
-            android:id="@+id/etText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="top|left" />
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Enter Title"
+                 />
+            <EditText
+                android:id="@+id/etText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter Memo"
+                android:gravity="top|left" />
+        </LinearLayout>
+
+
     </ScrollView>
 </RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.masst.memo.Activities.LoginRegisterActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+    <EditText
+        android:id="@+id/edloginName"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:inputType="textPersonName"
+        android:hint="Username"/>
+
+    <EditText
+        android:id="@+id/edloginPass"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_below="@id/edloginName"
+        android:inputType="textPassword"
+        android:hint="Password"/>
+
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_below="@id/edloginPass"
+        android:background="@color/colorbt"
+        android:textColor="@color/colorbttext"
+        android:text="Login" />
+
+</RelativeLayout>

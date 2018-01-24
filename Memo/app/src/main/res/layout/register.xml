@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.masst.memo.Activities.LoginRegisterActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <EditText
+        android:id="@+id/edName"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:inputType="textPersonName"
+        android:hint="@string/enter_name"/>
+
+    <EditText
+        android:id="@+id/edPass"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+       android:layout_below="@id/edName"
+        android:inputType="textPassword"
+        android:hint="Enter Password"/>
+
+    <EditText
+        android:id="@+id/edEmail"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/edPass"
+        android:inputType="textEmailAddress"
+        android:hint="Enter Email"/>
+
+    <Button
+        android:id="@+id/btRegister"
+        android:layout_marginTop="25dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/edEmail"
+        android:text="Register"
+        android:background="@color/colorbt"
+        android:textColor="@color/colorbttext"/>
+</RelativeLayout>

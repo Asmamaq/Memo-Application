@@ -1,4 +1,4 @@
-package com.masst.memo;
+package com.masst.memo.Adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.masst.memo.Database.DatabaseAccess;
+import com.masst.memo.Activities.EditMemoActivity;
+import com.masst.memo.Models.Memo;
+import com.masst.memo.R;
+import com.masst.memo.Activities.ViewActivity;
+
 import java.util.ArrayList;
 
 /**
@@ -25,6 +31,7 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
     private ArrayList<Memo> alMemos;
     private LayoutInflater layoutInflater;
     private DatabaseAccess databaseAccess;
+
     Snackbar sb;
     public View snackview;
 
@@ -50,15 +57,20 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
 
         holder.tvDate.setText(memo.getDate());
         holder.tvText.setText(memo.getShortText());
+        holder.tvTitle.setText(memo.getTitle());
         holder.tvText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewActivity.class);
-                String text=memo.getShortText();
+                String text=memo.getText();
+                String id= String.valueOf(memo.getId());
                 String date =memo.getDate();
+                String title= memo.getTitle();
                 Bundle bundle = new Bundle();
                 bundle.putString("memo_text",text);
+                bundle.putString("memo_title",title);
                 bundle.putString("memo_date",date);
+                bundle.putString("memo_id",id);
                 intent.putExtras(bundle);
                 if(!text.equals(null) && !date.equals(null)) {
                     context.startActivity(intent);
@@ -102,10 +114,14 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditMemoActivity.class);
                 Bundle bundle = new Bundle();
-                String text=memo.getShortText();
+                String text=memo.getText();
                 String date =memo.getDate();
+                String title=memo.getTitle();
+                String id= String.valueOf(memo.getId());
                 bundle.putString("memo_text",text);
+                bundle.putString("memo_title",title);
                 bundle.putString("memo_date",date);
+                bundle.putString("memo_id",id);
                 intent.putExtras(bundle);
                 if(!text.equals(null) && !date.equals(null)) {
                     context.startActivity(intent);
@@ -154,6 +170,7 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
     public class MemoRVViewHolder extends RecyclerView.ViewHolder {
         private TextView tvText;
         private TextView tvDate;
+        private TextView tvTitle;
         private ImageView ivDel;
         private ImageView ivEdit;
 
@@ -161,6 +178,7 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
             super(itemView);
 
             tvDate = (TextView) itemView.findViewById(R.id.txtDate);
+            tvTitle = (TextView) itemView.findViewById(R.id.txtTitle);
             tvText = (TextView) itemView.findViewById(R.id.txtMemo);
             ivDel = (ImageView) itemView.findViewById(R.id.btnDelete);
             ivEdit = (ImageView) itemView.findViewById(R.id.btnEdit);
