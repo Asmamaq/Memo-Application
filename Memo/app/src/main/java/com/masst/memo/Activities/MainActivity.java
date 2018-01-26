@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.masst.memo.Adapters.MemoRVAdapter;
-import com.masst.memo.AndroidDatabaseManager;
+import com.masst.memo.Models.AndroidDatabaseManager;
 import com.masst.memo.Database.DatabaseAccess;
 import com.masst.memo.Models.Memo;
 import com.masst.memo.R;

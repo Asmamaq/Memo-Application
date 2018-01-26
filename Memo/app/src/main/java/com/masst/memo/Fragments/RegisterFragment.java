@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,22 +49,63 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                SharedPreferences preferences = RegisterFragment.this.getActivity().getSharedPreferences("MyPref", 0);
                 String newUser = edrName.getText().toString();
                 String newPass = edrPass.getText().toString();
                 String newEmail = edremail.getText().toString();
 
+                // Check for a Username fiels
+                if (TextUtils.isEmpty(newUser))
+                {
+                    edrName.setError(getString(R.string.error_field_required));
+                }
+                // Check for a valid password, if the user entered one.
+                if (!TextUtils.isEmpty(newPass) && !isPasswordValid(newPass)) {
+
+                    edrPass.setError(getString(R.string.error_invalid_password));
+                }
+                // Check for a valid email address.
+                if (TextUtils.isEmpty(newEmail))
+                {
+                    edremail.setError(getString(R.string.error_field_required));
+                }
+                else if (!isEmailValid(newEmail))
+                {
+                    edremail.setError(getString(R.string.error_invalid_email));
+                }
+
+                String uname = preferences.getString("user","");
+                if(uname.equals(newUser))
+                {
+                    Toast.makeText(RegisterFragment.this.getActivity(), "Username already registered", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString(newUser + newPass + "data",newUser + "\n" +newEmail);
-                editor.commit();
-                Toast.makeText(RegisterFragment.this.getActivity(),"Successfully Registered",Toast.LENGTH_LONG).show();
-                Intent i = new Intent(RegisterFragment.this.getActivity(), LoginRegisterActivity.class);
-                startActivity(i);
+                editor.putString("user",newUser);
+                editor.putString("password",newPass);
+                editor.putString("email",newEmail);
+                Boolean flag = editor.commit();
+                if(flag)
+                {
+                   Toast.makeText(RegisterFragment.this.getActivity(), "Successfully Registered", Toast.LENGTH_LONG).show();
+                   Intent i = new Intent(RegisterFragment.this.getActivity(), LoginRegisterActivity.class);
+                   startActivity(i);
+               }
+               else
+               {
+                   Toast.makeText(RegisterFragment.this.getActivity(), "Please Try again,You are not registered ", Toast.LENGTH_LONG).show();
+               }
             }
         });
 
 
         return v;
     }
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
 
+    private boolean isPasswordValid(String password) {
+        return password.length() > 4;
+    }
 }
