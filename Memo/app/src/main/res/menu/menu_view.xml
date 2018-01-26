@@ -7,13 +7,16 @@ tools:context="com.masst.memo.Activities.MainActivity" >
 <item android:id="@+id/action_Delete"
     android:title="@string/action_delete"
     android:orderInCategory="100"
+    android:icon="@drawable/d_memo"
     app:showAsAction="never" />
 <item android:id="@+id/menu_item_share"
     android:title="Share"
     android:orderInCategory="100"
+    android:icon="@drawable/share"
     app:showAsAction="never" />
     <item android:id="@+id/menu_item_weather"
         android:title="Check weather"
+        android:icon="@drawable/weather"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

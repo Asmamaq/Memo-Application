@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             // redirect user to LoginActivity
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Logout");
-            alertDialog.setMessage(username+":   Are You sure you want to Log out :)");
+            alertDialog.setMessage(username+"\nAre You sure you want to Log out :)");
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Selection;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,9 +80,16 @@ public class EditMemoActivity extends AppCompatActivity {
     }
 
     public void onSaveClicked() {
+        // Check for a valid password, if the user entered one.
+
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         if(text == null){
+            String textstr=etTitle.getText().toString();
+            if (TextUtils.isEmpty(textstr)) {
+                this.etTitle.setError(getString(R.string.error_field_required));
+                return;
+            }
             // Add new memo
             Memo temp = new Memo();
             temp.setText(etText.getText().toString());
