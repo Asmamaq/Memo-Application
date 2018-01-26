@@ -18,7 +18,6 @@ import com.masst.memo.Adapters.MemoRVAdapter;
 import com.masst.memo.Database.DatabaseAccess;
 import com.masst.memo.Globals;
 import com.masst.memo.Models.AlertDialogManager;
-import com.masst.memo.Models.AndroidDatabaseManager;
 import com.masst.memo.Models.Memo;
 import com.masst.memo.Models.SessionManagment;
 import com.masst.memo.R;
@@ -59,9 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTheme(R.style.AppTheme);
+        setContentView(R.layout.activity_main);
 
         // Session class instance
         session = new SessionManagment(getApplicationContext());
@@ -127,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             this.finish();
         }
-
     }
 
     public void onAddClicked()
@@ -173,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else  if (id == R.id.action_profile) {
             // for checking profile
-          /*  AlertDialog palertDialog = new AlertDialog.Builder(this).create();
+            AlertDialog palertDialog = new AlertDialog.Builder(this).create();
             palertDialog.setTitle("Profile");
             palertDialog.setMessage("Username:   "+username+" "+ "\n\nPassword:  "+userPass);
             palertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -182,9 +183,11 @@ public class MainActivity extends AppCompatActivity {
                          dialog.dismiss();
                         }
                     });
-            palertDialog.show();*/
-            Intent i = new Intent(MainActivity.this,AndroidDatabaseManager.class);
-            startActivity(i);
+            palertDialog.show();
+
+            // if you want to check database then uncomment this code and comment above code
+            /*Intent i = new Intent(MainActivity.this,AndroidDatabaseManager.class);
+            startActivity(i);*/
         }
         return super.onOptionsItemSelected(item);
     }

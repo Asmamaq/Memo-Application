@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.masst.memo.Globals;
 import com.masst.memo.Models.Memo;
 import com.masst.memo.Models.SessionManagment;
 
@@ -102,9 +101,8 @@ public class DatabaseAccess {
 
     public ArrayList<Memo> getAllMemos(String username) {
         ArrayList<Memo> memos = new ArrayList<Memo>();
-        Cursor cursor =  database.rawQuery("SELECT * From memo WHERE user ="+'"username"+"'+"ORDER BY date DESC", null);
-                //database.query("memo", new String[]{Globals.COL_1,Globals.COL_2,Globals.COL_3,Globals.COL_4}, null, null, null, null, null);
-        Log.e("db","hey db ");
+        Cursor cursor =  database.rawQuery("SELECT * From memo WHERE user"+"='"+username+"'"+"ORDER BY date DESC", null);
+                Log.e("db","hey db ");
         if(cursor!=null) {
             if (cursor.moveToNext()) {
                 cursor.moveToFirst();
@@ -127,4 +125,5 @@ public class DatabaseAccess {
             return null;
         }
     }
+
 }
