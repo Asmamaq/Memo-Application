@@ -22,8 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_2 = "Title";
     private static final String COL_3 = "date";
     private static final String COL_4 = "memo";
-
-
+    private static final String COL_5 = "user";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE, null, VERSION);
@@ -33,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+ TABLE +"("  + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL_2 + " TEXT, " + COL_3 + " INTEGER, "
-                + COL_4 + " LONGTEXT);");
+                + COL_4 + " LONGTEXT, " + COL_5 + " TEXT);");
     }
 
     @Override

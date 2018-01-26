@@ -27,7 +27,7 @@ public class SessionManagment {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "MyPref";
+    private static final String PREF_NAME = "MyPrefs";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
@@ -81,7 +81,6 @@ public class SessionManagment {
             // Staring Login Activity
             _context.startActivity(i);
         }
-
     }
 
 

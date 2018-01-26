@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.masst.memo.Activities.LoginRegisterActivity;
+import com.masst.memo.Models.AlertDialogManager;
 import com.masst.memo.R;
 
 /**
@@ -26,8 +26,9 @@ public class RegisterFragment extends Fragment {
     EditText edrName, edrPass ,edremail;
     Button btreg;
     Context context;
-    Snackbar sb;
-    public View snackview;
+
+    // Alert Dialog Manager
+    AlertDialogManager alert = new AlertDialogManager();
     public RegisterFragment() {
         // Required empty public constructor
     }
@@ -43,7 +44,6 @@ public class RegisterFragment extends Fragment {
         edrPass = (EditText) v.findViewById(R.id.edPass);
         edremail = (EditText) v.findViewById(R.id.edEmail);
         btreg =     (Button)   v.findViewById(R.id.btRegister);
-        snackview= v.findViewById(android.R.id.content);
 
         btreg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,42 +54,53 @@ public class RegisterFragment extends Fragment {
                 String newPass = edrPass.getText().toString();
                 String newEmail = edremail.getText().toString();
 
-                // Check for a Username fiels
+                // Check for a Valid Username
                 if (TextUtils.isEmpty(newUser))
                 {
                     edrName.setError(getString(R.string.error_field_required));
+                    return;
                 }
                 // Check for a valid password, if the user entered one.
-                if (!TextUtils.isEmpty(newPass) && !isPasswordValid(newPass)) {
-
+                if (TextUtils.isEmpty(newPass))
+                {
+                    edrPass.setError(getString(R.string.error_field_required));
+                    return;
+                }
+                else if(!isPasswordValid(newPass))
+                {
                     edrPass.setError(getString(R.string.error_invalid_password));
+                    return;
                 }
                 // Check for a valid email address.
                 if (TextUtils.isEmpty(newEmail))
                 {
                     edremail.setError(getString(R.string.error_field_required));
+                    return;
                 }
                 else if (!isEmailValid(newEmail))
                 {
                     edremail.setError(getString(R.string.error_invalid_email));
+                    return;
                 }
 
                 String uname = preferences.getString("user","");
                 if(uname.equals(newUser))
                 {
-                    Toast.makeText(RegisterFragment.this.getActivity(), "Username already registered", Toast.LENGTH_LONG).show();
+                    alert.showAlertDialog(RegisterFragment.this.getActivity(), "Registeration Failed", "Username is already used", false);
                     return;
                 }
+
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("user",newUser);
                 editor.putString("password",newPass);
                 editor.putString("email",newEmail);
                 Boolean flag = editor.commit();
+
                 if(flag)
                 {
-                   Toast.makeText(RegisterFragment.this.getActivity(), "Successfully Registered", Toast.LENGTH_LONG).show();
-                   Intent i = new Intent(RegisterFragment.this.getActivity(), LoginRegisterActivity.class);
-                   startActivity(i);
+                    Toast.makeText(RegisterFragment.this.getActivity(), "Successfully Registered", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(RegisterFragment.this.getActivity(), LoginRegisterActivity.class);
+                    startActivity(i);
                }
                else
                {

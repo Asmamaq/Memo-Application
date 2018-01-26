@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.masst.memo.Activities.MainActivity" >
 
-    <item android:id="@+id/action_Db"
-        android:title="@string/action_db"
+    <item android:id="@+id/action_profile"
+        android:title="@string/action_profile"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_logOut"
+        android:title="@string/action_logOut"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>
