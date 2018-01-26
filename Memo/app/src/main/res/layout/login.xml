@@ -14,7 +14,7 @@
         android:layout_height="50dp"
         android:padding="5dp"
         android:inputType="textPersonName"
-        android:hint="@string/hint_username"/>
+        android:hint="Username"/>
 
     <EditText
         android:id="@+id/edloginPass"
@@ -23,7 +23,7 @@
         android:padding="5dp"
         android:layout_below="@id/edloginName"
         android:inputType="textPassword"
-        android:hint="@string/hint_password"/>
+        android:hint="Password"/>
 
     <Button
         android:id="@+id/btLogin"

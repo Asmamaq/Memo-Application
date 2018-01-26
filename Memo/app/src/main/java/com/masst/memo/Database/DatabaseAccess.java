@@ -34,7 +34,6 @@ public class DatabaseAccess {
         mcontext=context;
 
     }
-
     public static synchronized DatabaseAccess getInstance(Context context) {
         if (instance == null) {
             instance = new DatabaseAccess(context);

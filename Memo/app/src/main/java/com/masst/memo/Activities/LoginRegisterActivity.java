@@ -27,7 +27,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.login_register);
         manager = getSupportFragmentManager();
 
-
         btlogin = (Button) findViewById(R.id.btfLogin);
         btRegister = (Button) findViewById(R.id.btfRegister);
         LoginFragment loginFragment= new LoginFragment();

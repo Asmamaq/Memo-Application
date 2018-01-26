@@ -39,7 +39,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("Drop table if exists " + TABLE);
         onCreate(db);
-
     }
 
     public ArrayList<Cursor> getData(String Query){

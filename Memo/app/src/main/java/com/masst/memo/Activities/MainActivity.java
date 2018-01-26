@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTheme(R.style.AppTheme);
-        setContentView(R.layout.activity_main);
+        /*setTheme(R.style.AppTheme);
+        setContentView(R.layout.activity_main);*/
 
         // Session class instance
         session = new SessionManagment(getApplicationContext());
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         // get name of user
         username = user.get(SessionManagment.KEY_NAME);
         userPass = user.get(SessionManagment.KEY_PASS);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

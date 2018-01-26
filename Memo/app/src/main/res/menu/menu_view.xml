@@ -10,8 +10,7 @@ tools:context="com.masst.memo.Activities.MainActivity" >
     app:showAsAction="never" />
 <item
     android:id="@+id/menu_item_share"
-    android:title="@string/action_share"
+    android:title="Share"
     android:orderInCategory="100"
-    app:showAsAction="never"
-    />
+    app:showAsAction="never" />
 </menu>
