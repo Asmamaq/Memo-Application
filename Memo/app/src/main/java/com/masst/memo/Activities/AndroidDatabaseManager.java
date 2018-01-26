@@ -1,5 +1,5 @@
 //add your package name here example: package com.example.dbm;
-package com.masst.memo.Models;
+package com.masst.memo.Activities;
 //all required
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="130dp"
     android:padding="8dp"
+    android:id="@+id/llAdapter"
     android:background="@drawable/memo_background">
 
     <RelativeLayout

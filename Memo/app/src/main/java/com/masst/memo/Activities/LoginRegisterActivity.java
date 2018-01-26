@@ -56,10 +56,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
         alertDialog.setMessage("Are You sure you want to Exit");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                      finish();
+                    public void onClick(DialogInterface dialog, int which){
                         Globals.Exit_Code="true";
                         dialog.dismiss();
+                        finish();
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",

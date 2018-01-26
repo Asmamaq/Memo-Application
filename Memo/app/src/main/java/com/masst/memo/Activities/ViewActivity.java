@@ -117,6 +117,11 @@ public class ViewActivity extends AppCompatActivity {
             sendIntent.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(sendIntent,"Share via" ));
         }
+        else if(itemid == R.id.menu_item_weather)
+        {
+            Intent i = new Intent(ViewActivity.this,weatherActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

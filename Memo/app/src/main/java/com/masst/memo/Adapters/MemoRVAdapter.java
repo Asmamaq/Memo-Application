@@ -3,6 +3,7 @@ package com.masst.memo.Adapters;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -11,13 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.masst.memo.Database.DatabaseAccess;
 import com.masst.memo.Activities.EditMemoActivity;
+import com.masst.memo.Activities.ViewActivity;
+import com.masst.memo.Database.DatabaseAccess;
 import com.masst.memo.Models.Memo;
 import com.masst.memo.R;
-import com.masst.memo.Activities.ViewActivity;
 
 import java.util.ArrayList;
 
@@ -138,7 +140,36 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
                 }
             }
         });
-
+        holder.llAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ViewActivity.class);
+                String text=memo.getText();
+                String id= String.valueOf(memo.getId());
+                String date =memo.getDate();
+                String title= memo.getTitle();
+                Bundle bundle = new Bundle();
+                bundle.putString("memo_text",text);
+                bundle.putString("memo_title",title);
+                bundle.putString("memo_date",date);
+                bundle.putString("memo_id",id);
+                intent.putExtras(bundle);
+                if(!text.equals(null) && !date.equals(null)) {
+                    context.startActivity(intent);
+                }
+                else
+                {
+                    sb = Snackbar.make(snackview,"Please fill the data",Snackbar.LENGTH_LONG);
+                    sb.setAction("Exit", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            sb.dismiss();
+                        }
+                    });
+                }
+            }
+        });
+        holder.llAdapter.setBackgroundColor(position%2==1? Color.parseColor("#f2d2c5"):Color.parseColor("#d2f4ba"));
     }
     @Override
     public int getItemCount () {
@@ -173,6 +204,7 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
         private TextView tvTitle;
         private ImageView ivDel;
         private ImageView ivEdit;
+        private LinearLayout llAdapter;
 
         public MemoRVViewHolder (View itemView) {
             super(itemView);
@@ -182,6 +214,7 @@ public class  MemoRVAdapter extends RecyclerView.Adapter<MemoRVAdapter.MemoRVVie
             tvText = (TextView) itemView.findViewById(R.id.txtMemo);
             ivDel = (ImageView) itemView.findViewById(R.id.btnDelete);
             ivEdit = (ImageView) itemView.findViewById(R.id.btnEdit);
+            llAdapter = (LinearLayout) itemView.findViewById(R.id.llAdapter);
         }
     }
 }

@@ -47,27 +47,16 @@ public class MainActivity extends AppCompatActivity {
     public MemoRVAdapter rvaMemos;
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        // if user press back button from login then app close
-        if(Globals.Exit_Code.equals("true"))
-        {
-            this.finish();
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*setTheme(R.style.AppTheme);
-        setContentView(R.layout.activity_main);*/
+        setTheme(R.style.AppTheme);
+        setContentView(R.layout.activity_main);
 
         // Session class instance
         session = new SessionManagment(getApplicationContext());
-
         session.checkLogin();
 
        // get user data from session
@@ -119,6 +108,16 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvMemos.setLayoutManager(linearLayoutManager);
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        // if user press back button from login then app close
+        if(Globals.Exit_Code.equals("true"))
+        {
+            this.finish();
+        }
     }
 
     @Override

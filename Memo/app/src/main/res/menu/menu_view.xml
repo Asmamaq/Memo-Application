@@ -8,9 +8,12 @@ tools:context="com.masst.memo.Activities.MainActivity" >
     android:title="@string/action_delete"
     android:orderInCategory="100"
     app:showAsAction="never" />
-<item
-    android:id="@+id/menu_item_share"
+<item android:id="@+id/menu_item_share"
     android:title="Share"
     android:orderInCategory="100"
     app:showAsAction="never" />
+    <item android:id="@+id/menu_item_weather"
+        android:title="Check weather"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>
